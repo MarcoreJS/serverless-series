@@ -8,7 +8,7 @@ provider:
   region: us-east-1
 functions:
   app:
-    handler: server.handler
+    handler: lambda.handler
     events:
       - http: ANY /
       - http: 'ANY {proxy+}'

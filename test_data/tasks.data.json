@@ -1,0 +1,35 @@
+{
+    "T001": {
+        "data": {
+            "task_title": "Clean the kitchen",
+            "task_description": "The assignment is to clean the kitchen this includes wash the dishes, clean the stove, sweep and mop the floor",
+            "test_data": true
+        }
+    },
+    "T002": {
+        "data": {
+            "user": "marco.mercado@mail.com",
+            "task_id": "STORED",
+            "test_data": true
+        }
+    },
+    "T003": {
+        "data": {
+            "user": "marco.mercado@mail.com",
+            "task_id": "STORED",
+            "test_data": true
+        }
+    },
+    "T004": {},
+    "T005": {
+        "data": {
+            "task_id": "STORED",
+            "test_data": true
+        }
+    },
+    "T006": {
+        "data": {
+            "status": "FINISHED"
+        }
+    }
+}

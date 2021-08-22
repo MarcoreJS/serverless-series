@@ -1,0 +1,30 @@
+{
+    "U001": {
+        "data": {
+            "email": "marco.mercado@mail.com",
+            "first_name": "Marco",
+            "last_name": "Mercado",
+            "test_data": true
+        }
+    },
+    "U002": {
+        "data": {
+            "email": "marco.mercado@mail.com",
+            "first_name": "Marco",
+            "last_name": "Mercado",
+            "test_data": true
+        }
+    },
+    "U003": {
+        "data": {
+            "first_name": "Marco",
+            "last_name": "Mercado",
+            "test_data": true
+        }
+    },
+    "U004": {
+        "data": {
+            "user": "marco.mercado@mail.com"
+        }
+    }
+}
