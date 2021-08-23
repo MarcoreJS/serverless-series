@@ -16,8 +16,8 @@ provider:
         - dynamodb:GetItem
         - dynamodb:Delete
       Resource:
-        - 'arn:aws:dynamodb:us-east-1:478161939815:table/ServerlessSeries'
-        - 'arn:aws:dynamodb:us-east-1:478161939815:table/ServerlessSeries/*'
+        - 'arn:aws:dynamodb:us-east-1:<AWS_ACCOUNT_ID>:table/ServerlessSeries'
+        - 'arn:aws:dynamodb:us-east-1:<AWS_ACCOUNT_ID>:table/ServerlessSeries/*'
 functions:
   app:
     handler: lambda.handler
