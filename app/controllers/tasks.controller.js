@@ -32,7 +32,8 @@ exports.assignTask = (req, res) => {
 		sk: `task#${req.body.task_id}`,
 		assignment_status: 'IN_PROGRESS',
 		finished_at: null,
-		assigned_on: new Date().toISOString()
+		assigned_on: new Date().toISOString(),
+		test_data: true
 	}
 	let params = {
 		TransactItems: [

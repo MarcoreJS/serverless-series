@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha --exit && node cleanUp.js",
     "deploy": "sls deploy",
     "dev": "nodemon server.js"
   },
