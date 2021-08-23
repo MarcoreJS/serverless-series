@@ -12,14 +12,15 @@ describe("Tasks", function () {
 		it("T001 Should create a new task", (done) => {
 			let task = TEST_DATA["T001"].data
 			chai.request(app)
-				.post('/task/createTask')
+				.post('/tasks/createTask')
 				.send(task)
 				.end((err, res) => {
 					res.should.have.status(200)
 					res.body.should.have.property('task_id')
-					store["T002"].task_id = res.body.task_id
-					store["T003"].task_id = res.body.task_id
-					store["T005"].task_id = res.body.task_id
+					res.body.should.have.property('CapacityUnits').eql(1)
+					store["T002"] = { task_id: res.body.task_id } 
+					store["T003"] = { task_id: res.body.task_id } 
+					store["T005"] = { task_id: res.body.task_id } 
 					done()
 				})
 		})
@@ -29,7 +30,7 @@ describe("Tasks", function () {
 			let task = TEST_DATA["T002"].data
 			task.task_id = (task.task_id == "STORED") ? store["T002"].task_id : task.task_id
 			chai.request(app)
-				.post('/task/assignTask')
+				.post('/tasks/assignTask')
 				.send(task)
 				.end((err, res) => {
 					res.should.have.status(200)
@@ -44,7 +45,7 @@ describe("Tasks", function () {
 			let task = TEST_DATA["T003"].data
 			task.task_id = (task.task_id == "STORED") ? store["T003"].task_id : task.task_id
 			chai.request(app)
-				.post('/task/assignTask')
+				.post('/tasks/assignTask')
 				.send(task)
 				.end((err, res) => {
 					res.should.have.status(500)
@@ -56,7 +57,7 @@ describe("Tasks", function () {
 		it("T004 should list all tasks", (done) => {
 			let task = TEST_DATA["T004"].data
 			chai.request(app)
-				.get('/tasks')
+				.get('/tasks/all')
 				.end((err, res) => {
 					res.should.have.status(200)
 					chai.expect(res.body).to.be.an('array')
@@ -67,12 +68,13 @@ describe("Tasks", function () {
 				})
 		})
 	})
-	describe("End task POST /tasks/end", function () {
+	describe("End task POST /tasks/endTask", function () {
 		it("T005 Should mark as finished both the assignation and the task", (done) => {
 			let task = TEST_DATA["T005"].data
 			task.task_id = (task.task_id == "STORED") ? store["T005"].task_id : task.task_id
 			chai.request(app)
-				.post('/tasks')
+				.post('/tasks/endTask')
+				.send(task)
 				.end((err, res) => {
 					res.should.have.status(200)
 					res.body.should.have.property("CapacityUnits").eql(4)
@@ -80,16 +82,16 @@ describe("Tasks", function () {
 				})
 		})
 	})
-	describe("Get all finished tasks GET /tasks/FINISHED", function () {
+	describe("Get all finished tasks GET /tasks/getByStatus/FINISHED", function () {
 		it("T006 should list all tasks with status FINISHED", (done) => {
 			let task = TEST_DATA["T006"].data
 			chai.request(app)
-				.get(`/tasks/${task.status}`)
+				.get(`/tasks/getByStatus/${task.status}`)
 				.end((err, res) => {
 					res.should.have.status(200)
 					chai.expect(res.body).to.be.an('array')
 					res.body.forEach(t => {
-						t.should.have.property('status').eql(task.status)
+						t.should.have.property('task_status').eql(task.status)
 					})
 					done()
 				})

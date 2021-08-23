@@ -24,6 +24,7 @@
     "T005": {
         "data": {
             "task_id": "STORED",
+            "user_email": "marco.mercado@mail.com",
             "test_data": true
         }
     },

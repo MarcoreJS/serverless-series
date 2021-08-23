@@ -14,4 +14,7 @@ app.listen(PORT, function() {
     console.log(`App listening on http://localhost:${PORT}`)
 })
 
-module.exports.handler = app
+require('./app/routes/users.routes')(app)
+require('./app/routes/tasks.routes')(app)
+
+module.exports = app

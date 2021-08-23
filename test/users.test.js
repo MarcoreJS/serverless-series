@@ -17,7 +17,7 @@ describe("Users", function () {
 					res.should.have.status(200)
 					// DynamoDB returns how many capacity units we use, since we only write 1 record in this transaction it should be 1
 					res.body.should.have.property('CapacityUnits').eql(1) 
-					done();
+					done()
 				})
 		})
 		it("U002 Shouldn't create a new user with repeated email and return an error", (done) => {
@@ -27,7 +27,7 @@ describe("Users", function () {
 				.send(user)
 				.end((err, res) => {
 					res.should.have.status(500)
-					done();
+					done()
 				})
 		})
 		it("U003 Shouldn't create a new user without email and return an error", (done) => {
@@ -37,7 +37,7 @@ describe("Users", function () {
 				.send(user)
 				.end((err, res) => {
 					res.should.have.status(500)
-					done();
+					done()
 				})
 		})
 	})
@@ -45,11 +45,12 @@ describe("Users", function () {
 		it("U004 Should list all the assignments of a user", (done) => {
 			let user = TEST_DATA["U004"].data
 			chai.request(app)
-				.get(`/users/assignments/${user.user}`)
+				.get(`/users/getUserWithAssignments/${user.user}`)
 				.end((err, res) => {
 					res.should.have.status(200)
-					res.body.should.have.property('pk').eql(user.user)
-					done();
+					res.body.should.have.property('user').to.be.an('object')
+					res.body.should.have.property('assignments').to.be.an('array')
+					done()
 				})
 		})
 	})
