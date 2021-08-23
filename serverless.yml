@@ -6,6 +6,18 @@ provider:
   memorySize: 128
   stage: dev
   region: us-east-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:Delete
+      Resource:
+        - 'arn:aws:dynamodb:us-east-1:478161939815:table/ServerlessSeries'
+        - 'arn:aws:dynamodb:us-east-1:478161939815:table/ServerlessSeries/*'
 functions:
   app:
     handler: lambda.handler
